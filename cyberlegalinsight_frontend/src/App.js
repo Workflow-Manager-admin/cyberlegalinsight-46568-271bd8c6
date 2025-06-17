@@ -24,6 +24,8 @@ function App() {
   const questionFlowRef = useRef(null);
   // Ref for ReportGenerator for smooth scrolling
   const reportGeneratorRef = useRef(null);
+  // Ref for GamificationPanel for smooth scrolling
+  const gamificationPanelRef = useRef(null);
 
   // Helper: Close modal, then scroll to AdaptiveQuestionFlow
   function scrollToQuestionFlow() {
@@ -42,6 +44,16 @@ function App() {
     setTimeout(() => {
       if (reportGeneratorRef.current) {
         reportGeneratorRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 70);
+  }
+
+  // Helper: Close modal, then scroll to GamificationPanel
+  function scrollToGamificationPanel() {
+    setModal(null);
+    setTimeout(() => {
+      if (gamificationPanelRef.current) {
+        gamificationPanelRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 70);
   }
@@ -71,6 +83,11 @@ function App() {
     setModal('gamification');
   }
 
+  // Handler for "Badges" button in navbar: closes modal, then scrolls to GamificationPanel
+  function handleBadgesNavigate() {
+    scrollToGamificationPanel();
+  }
+
   // Central function to close any modal
   function handleCloseModal() {
     setModal(null);
@@ -86,7 +103,7 @@ function App() {
           onClick={handleStartQuestionFlow}
         >Question Flow</button>
         <button className="btn" style={{background:'var(--secondary)'}} onClick={handleShowReportPreview}>Report Preview</button>
-        <button className="btn" style={{background:'var(--accent)'}} onClick={() => setModal('gamification')}>Badges</button>
+        <button className="btn" style={{background:'var(--accent)'}} onClick={handleBadgesNavigate}>Badges</button>
       </div>
     );
   }
@@ -175,7 +192,7 @@ function App() {
           </div>
 
           {/* Gamification with modal shortcut */}
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }} ref={gamificationPanelRef}>
             <GamificationPanel />
             <button
               className="btn"
