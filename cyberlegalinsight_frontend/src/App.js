@@ -1,10 +1,21 @@
 import React from 'react';
 import './App.css';
 
+// Core feature stubs
+import AdaptiveQuestionFlow from './AdaptiveQuestionFlow';
+import VisualizationPanel from './VisualizationPanel';
+import ThemeToggle from './ThemeToggle';
+import FileUpload from './FileUpload';
+import ReportGenerator from './ReportGenerator';
+import GamificationPanel from './GamificationPanel';
+import ChatSidebar from './ChatSidebar';
+import NewsFeedPanel from './NewsFeedPanel';
+
 /**
  * Main application entrypoint and layout for CyberLegalInsight.
  * No direct use of PUBLIC_URL (handled by process.env if needed in CRA apps).
  */
+// Note: If you need asset public URL, use process.env.PUBLIC_URL in React scripts.
 // PUBLIC_INTERFACE
 function App() {
   return (
@@ -25,12 +36,15 @@ function App() {
       {/* Responsive Layout: Sidebar + Main */}
       <div className="content-layout">
         <aside className="sidebar">
-          <div className="sidebar-placeholder">
-            {/* Future: Chat/Assistant & News Area */}
-            Sidebar (Chat & News)
-          </div>
+          {/* === Sidebar: Chat Assistant and News Feed Panel Placeholders === */}
+          <ChatSidebar />
+          <NewsFeedPanel />
         </aside>
         <main className="main-content">
+          {/* === Theme Toggle Placeholder === */}
+          <ThemeToggle />
+
+          {/* === Hero Section (Introduction, Welcome) === */}
           <div className="hero">
             <div className="subtitle">
               Advanced Cyber Risk & Contract Analysis
@@ -45,6 +59,21 @@ function App() {
               Get Started
             </button>
           </div>
+
+          {/* === File Upload Placeholder === */}
+          <FileUpload />
+
+          {/* === Adaptive Question Flow Placeholder === */}
+          <AdaptiveQuestionFlow />
+
+          {/* === Visualization Panel Placeholder === */}
+          <VisualizationPanel />
+
+          {/* === Report Generator Placeholder === */}
+          <ReportGenerator />
+
+          {/* === Gamification & Badges Placeholder === */}
+          <GamificationPanel />
         </main>
       </div>
 
