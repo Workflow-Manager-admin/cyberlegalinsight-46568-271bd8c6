@@ -11,6 +11,36 @@
   --navbar-height: 64px;
 }
 
+/* Theme: Light */
+.theme-light {
+  --primary: #4A90E2;
+  --secondary: #50E3C2;
+  --accent: #F5A623;
+  --base-dark: #141b2d;
+  --base-light: #f8fbff;
+  --text-color: #18202b;
+  --text-light: #ffffff;
+  --text-secondary: rgba(24, 32, 43, 0.7);
+  --border-color: rgba(74, 144, 226, 0.12);
+  background-color: var(--base-light);
+  color: var(--text-color);
+}
+
+/* Theme: Dark */
+.theme-dark {
+  --primary: #365fa0;
+  --secondary: #2bbda8;
+  --accent: #e87a41;
+  --base-dark: #141b2d;
+  --base-light: #181d29;
+  --text-color: #e7ecfa;
+  --text-light: #f8fbff;
+  --text-secondary: rgba(250, 250, 250, 0.68);
+  --border-color: rgba(74, 144, 226, 0.26);
+  background-color: var(--base-dark);
+  color: var(--text-light);
+}
+
 body {
   margin: 0;
   font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;

@@ -14,6 +14,8 @@ import NewsFeedPanel from './NewsFeedPanel';
 /**
  * Main application entrypoint and layout for CyberLegalInsight.
  * No direct use of PUBLIC_URL (handled by process.env if needed in CRA apps).
+ *
+ * Theme is managed by <body> class (see ThemeToggle).
  */
 // Note: If you need asset public URL, use process.env.PUBLIC_URL in React scripts.
 // PUBLIC_INTERFACE
