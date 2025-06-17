@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './App.css';
 import AdaptiveQuestionFlow from './AdaptiveQuestionFlow';
 import VisualizationPanel from './VisualizationPanel';
@@ -20,9 +20,28 @@ function App() {
   // Only one modal/dialog open at a time; keys: 'getStarted', 'reportPreview', 'gamification', etc., or null
   const [modal, setModal] = useState(null);
 
+  // Ref for AdaptiveQuestionFlow for smooth scrolling
+  const questionFlowRef = useRef(null);
+
+  // Helper: Close modal, then scroll to AdaptiveQuestionFlow
+  function scrollToQuestionFlow() {
+    setModal(null);
+    // Small setTimeout ensures modal closes before scroll (for a11y)
+    setTimeout(() => {
+      if (questionFlowRef.current) {
+        questionFlowRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 70);
+  }
+
   // Callback for "Get Started" hero button: open onboarding modal and guide into question flow
   function handleGetStarted() {
     setModal('getStarted');
+  }
+
+  // Callback for when user presses "Start" in onboarding modal or clicks navigation for Question Flow
+  function handleStartQuestionFlow() {
+    scrollToQuestionFlow();
   }
 
   // Callback for showing report preview in modal
@@ -44,7 +63,11 @@ function App() {
   function MainNav() {
     return (
       <div style={{display:'flex', gap:10, marginBottom:19}}>
-        <button className="btn" style={{background:'var(--primary)'}} onClick={() => setModal('getStarted')}>Question Flow</button>
+        <button
+          className="btn"
+          style={{background:'var(--primary)'}}
+          onClick={handleStartQuestionFlow}
+        >Question Flow</button>
         <button className="btn" style={{background:'var(--secondary)'}} onClick={() => setModal('reportPreview')}>Report Preview</button>
         <button className="btn" style={{background:'var(--accent)'}} onClick={() => setModal('gamification')}>Badges</button>
       </div>
@@ -93,7 +116,11 @@ function App() {
             <div className="description">
               Secure, analyze, and understand your digital contracts & online behaviors with powerful AI—visualizations, chat-based help, and real-time updates.
             </div>
-            <button className="btn btn-large" style={{ background: "var(--primary)" }} onClick={handleGetStarted}>
+            <button
+              className="btn btn-large"
+              style={{ background: "var(--primary)" }}
+              onClick={handleGetStarted}
+            >
               Get Started
             </button>
           </div>
@@ -102,7 +129,9 @@ function App() {
           <FileUpload />
 
           {/* Adaptive Question Flow (anchor section for question-based onboarding) */}
-          <AdaptiveQuestionFlow />
+          <div ref={questionFlowRef}>
+            <AdaptiveQuestionFlow />
+          </div>
 
           {/* Visualization Insights Panel */}
           <VisualizationPanel />
@@ -156,8 +185,12 @@ function App() {
            Use the <strong>Question Flow</strong> below to begin.<br /><br />
           <span role="img" aria-label="idea">🧭</span>
         </p>
-        {/* Could autofocus/scroll to AdaptiveQuestionFlow if desired */}
-        <button className="btn" style={{ marginTop:18, background:"var(--primary)" }} onClick={handleCloseModal}>
+        {/* Scroll to AdaptiveQuestionFlow on Start */}
+        <button
+          className="btn"
+          style={{ marginTop:18, background:"var(--primary)" }}
+          onClick={handleStartQuestionFlow}
+        >
           Start
         </button>
       </Modal>
