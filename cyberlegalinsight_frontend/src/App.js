@@ -1,5 +1,3 @@
-// All import statements must come first (per ESLint)
-// All import statements must come first (per ESLint)
 import React from 'react';
 import './App.css';
 import AdaptiveQuestionFlow from './AdaptiveQuestionFlow';
@@ -11,31 +9,14 @@ import GamificationPanel from './GamificationPanel';
 import ChatSidebar from './ChatSidebar';
 import NewsFeedPanel from './NewsFeedPanel';
 
-// Defensive: ensure PUBLIC_URL is always defined (for compatibility with some templates/scripts)
-if (typeof PUBLIC_URL === "undefined") {
-  // eslint-disable-next-line no-global-assign
-  window.PUBLIC_URL = process.env.PUBLIC_URL || "";
-}
 
 
-// Core feature stubs
-import AdaptiveQuestionFlow from './AdaptiveQuestionFlow';
-import VisualizationPanel from './VisualizationPanel';
-import ThemeToggle from './ThemeToggle';
-import FileUpload from './FileUpload';
-import ReportGenerator from './ReportGenerator';
-import GamificationPanel from './GamificationPanel';
-import ChatSidebar from './ChatSidebar';
-import NewsFeedPanel from './NewsFeedPanel';
 
 /**
  * Main application entrypoint and layout for CyberLegalInsight.
- * No direct use of PUBLIC_URL (handled by process.env if needed in CRA apps).
  *
  * Theme is managed by <body> class (see ThemeToggle).
  */
-// Note: If you need asset public URL, use process.env.PUBLIC_URL in React scripts.
-// Note: If you need asset public URL, use process.env.PUBLIC_URL in React scripts.
 // PUBLIC_INTERFACE
 function App() {
   return (
