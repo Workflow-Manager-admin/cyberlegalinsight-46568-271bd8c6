@@ -18,6 +18,7 @@ import NewsFeedPanel from './NewsFeedPanel';
  * Theme is managed by <body> class (see ThemeToggle).
  */
 // Note: If you need asset public URL, use process.env.PUBLIC_URL in React scripts.
+// Note: If you need asset public URL, use process.env.PUBLIC_URL in React scripts.
 // PUBLIC_INTERFACE
 function App() {
   return (
