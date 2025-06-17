@@ -22,6 +22,8 @@ function App() {
 
   // Ref for AdaptiveQuestionFlow for smooth scrolling
   const questionFlowRef = useRef(null);
+  // Ref for ReportGenerator for smooth scrolling
+  const reportGeneratorRef = useRef(null);
 
   // Helper: Close modal, then scroll to AdaptiveQuestionFlow
   function scrollToQuestionFlow() {
@@ -30,6 +32,16 @@ function App() {
     setTimeout(() => {
       if (questionFlowRef.current) {
         questionFlowRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 70);
+  }
+
+  // Helper: Close modal, then scroll to ReportGenerator
+  function scrollToReportGenerator() {
+    setModal(null);
+    setTimeout(() => {
+      if (reportGeneratorRef.current) {
+        reportGeneratorRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }, 70);
   }
@@ -47,6 +59,11 @@ function App() {
   // Callback for showing report preview in modal
   function handleShowReportPreview() {
     setModal('reportPreview');
+  }
+
+  // Handler for report preview button to close modal & scroll to ReportGenerator
+  function handleReportPreviewNavigate() {
+    scrollToReportGenerator();
   }
 
   // Callback for showing gamification / badges modal
@@ -68,7 +85,7 @@ function App() {
           style={{background:'var(--primary)'}}
           onClick={handleStartQuestionFlow}
         >Question Flow</button>
-        <button className="btn" style={{background:'var(--secondary)'}} onClick={() => setModal('reportPreview')}>Report Preview</button>
+        <button className="btn" style={{background:'var(--secondary)'}} onClick={handleShowReportPreview}>Report Preview</button>
         <button className="btn" style={{background:'var(--accent)'}} onClick={() => setModal('gamification')}>Badges</button>
       </div>
     );
@@ -137,7 +154,7 @@ function App() {
           <VisualizationPanel />
 
           {/* Report Generator; adds button for opening preview modal */}
-          <div style={{ position: 'relative' }}>
+          <div style={{ position: 'relative' }} ref={reportGeneratorRef}>
             <ReportGenerator />
             {/* Overlay report preview shortcut */}
             <button
@@ -201,8 +218,11 @@ function App() {
           Demo: Preview summary report export in a modal dialog here.<br/>
           (Use full <b>Report Generator</b> for actions.)
         </div>
-        {/* Optionally insert real preview by extracting ReportPreview from ReportGenerator */}
-        <button className="btn" style={{marginTop:10, background:'var(--primary)'}} onClick={handleCloseModal}>
+        {/* Scroll to ReportGenerator section when 'Go to Full Report' is clicked */}
+        <button className="btn" style={{marginTop:10, background:'var(--primary)'}} onClick={handleReportPreviewNavigate}>
+          Go to Full Report
+        </button>
+        <button className="btn" style={{marginTop:10, marginLeft:8, background:'var(--secondary)'}} onClick={handleCloseModal}>
           Close
         </button>
       </Modal>
